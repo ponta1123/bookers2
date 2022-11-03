@@ -2,12 +2,11 @@ class Book < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
-  has_many :favorites, dependent: :destroy
-  has_many :post_comments, dependent: :destroy
 
   validates :title, presence: true
-  validates :body, presence: true
-  validates :image, presence: true
+  validates :body, presence: true, length: { maximum: 200 }
+
+  #validates :image, presence: true
 
   def get_image
     unless image.attached?
